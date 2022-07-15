@@ -1,6 +1,6 @@
-SOURCE_IMAGE = os.getenv("SOURCE_IMAGE", default='your-registry.io/project/steeltoe-weatherforecast-source') # update registry
+SOURCE_IMAGE = os.getenv("SOURCE_IMAGE", default='gcr.io/anz-tap-playground/build-service') # update registry
 LOCAL_PATH = os.getenv("LOCAL_PATH", default='.')
-NAMESPACE = os.getenv("NAMESPACE", default='default')
+NAMESPACE = os.getenv("NAMESPACE", default='justeh')
 NAME = "sample-app"
 RID = "ubuntu.18.04-x64"
 CONFIGURATION = "Release"
@@ -31,4 +31,4 @@ k8s_custom_deploy(
 k8s_resource(NAME, port_forwards=["8080:8080"],
             extra_pod_selectors=[{'serving.knative.dev/service': 'sample-app'}])
 
-allow_k8s_contexts('<context>') # update the context
+allow_k8s_contexts('gke_anz-tap-playground_australia-southeast1-a_full-cluster') # update the context
